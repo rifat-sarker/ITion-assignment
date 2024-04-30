@@ -18,22 +18,23 @@ const Home = () => {
     // console.log(movies);
   }, []);
 
-
- // Function to handle genre selection
- const handleGenreChange = (event) => {
-  const { value } = event.target;
-  if (selectedGenres.includes(value)) {
-    setSelectedGenres(selectedGenres.filter((genre) => genre !== value));
-  } else {
-    setSelectedGenres([...selectedGenres, value]);
-  }
-};
+  // Function to handle genre selection
+  const handleGenreChange = (event) => {
+    const { value } = event.target;
+    if (selectedGenres.includes(value)) {
+      setSelectedGenres(selectedGenres.filter((genre) => genre !== value));
+    } else {
+      setSelectedGenres([...selectedGenres, value]);
+    }
+  };
 
   // Function to handle language selection
   const handleLanguageChange = (event) => {
     const { value } = event.target;
     if (selectedLanguages.includes(value)) {
-      setSelectedLanguages(selectedLanguages.filter((language) => language !== value));
+      setSelectedLanguages(
+        selectedLanguages.filter((language) => language !== value)
+      );
     } else {
       setSelectedLanguages([...selectedLanguages, value]);
     }
@@ -43,24 +44,36 @@ const Home = () => {
   const handleCountryChange = (event) => {
     const { value } = event.target;
     if (selectedCountries.includes(value)) {
-      setSelectedCountries(selectedCountries.filter((country) => country !== value));
+      setSelectedCountries(
+        selectedCountries.filter((country) => country !== value)
+      );
     } else {
       setSelectedCountries([...selectedCountries, value]);
     }
   };
-    // Filter movies based on selected options
-    const filteredMovies = movies.filter((movie) => {
-      const genresMatch = selectedGenres.length === 0 || selectedGenres.some((genre) => movie.moviegenres.includes(genre));
-      const languagesMatch = selectedLanguages.length === 0 || selectedLanguages.some((language) => movie.movielanguages.includes(language));
-      const countriesMatch = selectedCountries.length === 0 || selectedCountries.some((country) => movie.moviecountries.includes(country));
-      return genresMatch && languagesMatch && countriesMatch;
-    });
+  // Filter movies based on selected options
+  const filteredMovies = movies.filter((movie) => {
+    const genresMatch =
+      selectedGenres.length === 0 ||
+      selectedGenres.some((genre) => movie.moviegenres.includes(genre));
+    const languagesMatch =
+      selectedLanguages.length === 0 ||
+      selectedLanguages.some((language) =>
+        movie.movielanguages.includes(language)
+      );
+    const countriesMatch =
+      selectedCountries.length === 0 ||
+      selectedCountries.some((country) =>
+        movie.moviecountries.includes(country)
+      );
+    return genresMatch && languagesMatch && countriesMatch;
+  });
   return (
-    <Box className="">
+    <Box>
       <Typography fontWeight={"bold"} textAlign={"center"} my={3} variant="h3">
         All Movies
       </Typography>
-      <Box className="my-10 justify-center flex gap-16">
+      <Box className="my-10 justify-evenly  flex gap-8">
         <Typography>
           <span className="font-bold">Sort by Genres :</span>
           {["Action", "Adventure", "Fantasy"].map((genre) => (
@@ -81,7 +94,9 @@ const Home = () => {
           ))}
         </Typography>
         <Typography>
-        <span className="font-bold"><span className="font-bold">Sort by Languages :</span></span>
+          <span className="font-bold">
+            <span className="font-bold">Sort by Languages :</span>
+          </span>
           {["Hindi", "Tamil", "English"].map((language) => (
             <Box key={language}>
               <label className="mr-1" htmlFor={language}>
@@ -100,7 +115,9 @@ const Home = () => {
           ))}
         </Typography>
         <Typography>
-        <span className="font-bold"><span className="font-bold">Sort by Countries :</span></span>
+          <span className="font-bold">
+            <span className="font-bold">Sort by Countries :</span>
+          </span>
           {["India", "United States", "United Arab Emirates"].map((country) => (
             <Box key={country}>
               <label className="mr-1" htmlFor={country}>

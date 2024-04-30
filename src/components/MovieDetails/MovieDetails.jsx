@@ -15,25 +15,48 @@ const MovieDetails = () => {
   const allMovies = movies.filter((movie) => movie.imdbmovieid === id);
 
   return (
-    <Box sx={{ width: "fit",}}>
+    <Box sx={{ width: "fit" }}>
       {allMovies.map((movie) => (
-        <Box sx={{}} key="movie.imdbmovieid">
-          <Typography fontWeight={"bold"} variant="h4">{movie.movietitle}</Typography>
-          <img className="size-42  my-4" src={movie.moviemainphotos} alt="movie_photo" />
-           <div className=" flex-col items-center ">
-           <Typography sx={{display: "flex", gap: 1,}} variant="body2" color="text.secondary">
-              <span className="text-black font-bold">Languages:</span>
-              {movie.movielanguages.map((language, idx) => <p key={idx}>{language}</p>)}
-            </Typography>
-            <Typography  sx={{display: "flex", gap: 1, width: "fit-content", }}  variant="body2" color="text.secondary">
+        <Box key="movie.imdbmovieid">
+          <Typography fontWeight={"bold"} variant="h4">
+            {movie.movietitle}
+          </Typography>
+          <img
+            className="size-42 my-4"
+            src={movie.moviemainphotos}
+            alt="movie_photo"
+          />
+
+          <Typography
+            sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}
+            variant="body2"
+            color="text.secondary"
+          >
+            <span className="text-black font-bold">Languages:</span>
+            {movie.movielanguages.map((language, idx) => (
+              <p key={idx}>{language}</p>
+            ))}
+          </Typography>
+          <Typography
+            sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}
+            variant="body2"
+            color="text.secondary"
+          >
             <span className="text-black font-bold">Countries:</span>
-              {movie.moviecountries.map((country, idx) => <p key={idx}>{country}</p>)}
-            </Typography>
-            <Typography sx={{display: "flex", gap: 1}} variant="body2" color="text.secondary">
+            {movie.moviecountries.map((country, idx) => (
+              <p key={idx}>{country}</p>
+            ))}
+          </Typography>
+          <Typography
+            sx={{ display: "flex", gap: 1 }}
+            variant="body2"
+            color="text.secondary"
+          >
             <span className="text-black font-bold">Genres:</span>
-              {movie.moviegenres.map((genres, idx) => <p key={idx}>{genres}</p>)}
-            </Typography>
-           </div>
+            {movie.moviegenres.map((genres, idx) => (
+              <p key={idx}>{genres}</p>
+            ))}
+          </Typography>
         </Box>
       ))}
     </Box>
